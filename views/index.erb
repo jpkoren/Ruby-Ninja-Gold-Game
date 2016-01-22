@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang= "en">
+	<head>
+	    <title>Ninja Gold Game</title>
+		<meta charset= "UTF-8">
+	    <style type="text/css">
+	    	#container {
+	    		width: 970px;
+				height: 760px;
+				margin: 0 auto;
+				border: 2px solid black;
+				padding: 20px;
+				text-align: center;
+				background-color: lightblue;
+	    	}
+	    	.building {
+	    		width: 200px;
+	    		height: 200px;
+	    		display: inline-block;
+	    		position: relative;
+	    		padding-top: 20px;
+	    		border: 1px solid black;
+	    		background-color: white;
+	    	}
+	    	.btn {
+	    		position: relative;
+	    		top: 40px;
+	    		color: white;
+	    		background-color: red;
+	    		border: 1px solid black;
+	    	}
+	    	#activities{
+			    width: 925px;
+			    height: 150px;
+				border: 2px dotted black;
+			    overflow: auto;
+			    padding-bottom: 35px;
+			    position: relative;
+			    left: 20px;
+			    background-color: white;
+			    margin-bottom: 30px;
+			}
+			.green {
+				color: green;
+			}
+			.red {
+				color: red;
+			}
+	    </style>
+    </head>
+	
+	<body>
+		<div id="container">
+			<h1>Ninja Gold Game</h1>
+			<div id="score">
+				<h2>Your Gold:</h2>
+				<p><%= @gold %></p>
+			</div>
+
+			<form class="building" action= "/farm" method="post">
+				<input type="hidden" name="farm" value="farm">
+				<h2>Farm</h2>
+				<h3>(earns 10-20 golds)</h3>
+				<button class="btn" type="submit">Find Gold!</button>
+			</form>
+
+			<form class="building" action= "/cave" method="post">
+				<input type="hidden" name="cave" value="cave">
+				<h2>Cave</h2>
+				<h3>(earns 5-10 golds)</h3>
+				<button class="btn" type="submit">Find Gold!</button>
+			</form>
+
+			<form class="building" action= "/house" method="post">
+				<input type="hidden" name="house" value="house">
+				<h2>House</h2>
+				<h3>(earns 2-5 golds)</h3>
+				<button class="btn" type="submit">Find Gold!</button>
+			</form>
+
+			<form class="building" action= "/casino" method="post">
+				<input type="hidden" name="casino" value="casino">
+				<h2>Casino</h2>
+				<h3>(earns/takes 0-50 golds)</h3>
+				<button class="btn" type="submit">Find Gold!</button>
+			</form>
+
+			<h2 id="actTitle">Activities:</h2>
+			<div id="activities">
+
+				<% if @activities %>
+					<% @activities.each do |msg| %>
+					<p><%= msg %></p>
+					<% end %>
+				<% end %>
+				
+			</div>
+			
+			<form id="reset" action="/reset" id="reset">
+				<button id="newGameBtn" type="submit">Start New Game</button>
+			</form>
+
+		</div>
+	</body>
+</html>
